@@ -1,0 +1,18 @@
+FROM alpine:3.16.3
+LABEL maintainer "DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>"
+
+ARG S6_VERSION='3.1.2.1'
+
+### Environment variables
+ENV LANG='en_US.UTF-8' \
+    LANGUAGE='en_US.UTF-8' \
+    S6_VERSION="${S6_VERSION}"
+
+RUN set -x && \
+    apk --no-cache upgrade && \
+    rm -rf /tmp/* \
+           /var/cache/apk/*  \
+           /var/tmp/*
+
+### Start Program
+ENTRYPOINT ["/init"]
