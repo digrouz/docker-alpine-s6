@@ -1,0 +1,12 @@
+#!/command/with-contenv sh
+
+autoupgrade=${AUTOUPGRADE:-0}
+
+if [ "${autoupgrade}" == 1 ]; then
+  if [ "$(id -u)" = '0' ]; then
+    apk upgrade --no-cache
+    rm -rf /var/cache/apk/* 
+  else
+    echo "[WARNING]: cannot run autoupgrade, not running as root"
+  fi
+fi

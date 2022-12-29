@@ -1,4 +1,4 @@
-FROM alpine:3.16.3
+FROM alpine:3.17.0
 LABEL maintainer "DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>"
 
 ARG S6_VERSION='3.1.2.1'
@@ -10,8 +10,13 @@ ENV LANG='en_US.UTF-8' \
     S6_VERSION="${S6_VERSION}" \
     S6_ARCH="${S6_ARCH}"
 
+COPY root/ /
+
 RUN set -x && \
-    apk --no-cache upgrade && \
+    apk upgrade --no-cache && \
+    apk add --no-cache --virtual=base-deps \
+      shadow \
+    && \
     mkdir /tmp/s6 && \
     wget https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-noarch.tar.xz -O /tmp/s6/s6-overlay-noarch.tar.xz && \
     wget https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-noarch.tar.xz.sha256 -O /tmp/s6/s6-overlay-noarch.tar.xz.sha256 && \
@@ -21,6 +26,7 @@ RUN set -x && \
     sha256sum -c *.sha256 && \
     tar -Jxpf s6-overlay-noarch.tar.xz -C / && \
     tar -Jxpf s6-overlay-${S6_ARCH}.tar.xz -C / && \
+    useradd -u 12345 -m -U -s /sbin/nologin appuser && \
     rm -rf /tmp/* \
            /var/cache/apk/*  \
            /var/tmp/*

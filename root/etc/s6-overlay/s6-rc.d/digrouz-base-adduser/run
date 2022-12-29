@@ -1,0 +1,7 @@
+#!/command/with-contenv sh
+
+UID=${UID:-12345}
+GID=${GID:-12345}
+
+groupmod -o -g "${GID}" appuser
+usermod -o -u "${UID}" appuser
