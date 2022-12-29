@@ -7,7 +7,7 @@ ARG S6_ARCH='x86_64'
 ### Environment variables
 ENV LANG='en_US.UTF-8' \
     LANGUAGE='en_US.UTF-8' \
-    S6_BEHAVIOUR_IF_STAGE2_FAILS ='2' \
+    S6_BEHAVIOUR_IF_STAGE2_FAILS='2' \
     S6_VERSION="${S6_VERSION}" \
     S6_ARCH="${S6_ARCH}"
 
