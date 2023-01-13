@@ -21,7 +21,7 @@ https://www.alpinelinux.org/
 https://github.com/just-containers/s6-overlay
 
 ## Usage
-    docker create --name= \
+    docker create --name=alpine-s6 \
       -e UID=<UID default:12345> \
       -e GID=<GID default:12345> \
       -e AUTOUPGRADE=<0|1 default:0> \
