@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -x
-
 DDCLIENT_URL="https://api.github.com/repos/just-containers/s6-overlay/releases"
 
 FULL_LAST_VERSION=$(curl -SsL ${DDCLIENT_URL} | \
