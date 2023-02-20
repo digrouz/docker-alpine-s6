@@ -1,7 +1,7 @@
 FROM alpine:3.17.2
 LABEL maintainer "DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>"
 
-ARG S6_VERSION=''
+ARG S6_VERSION='3.1.4.0'
 ARG S6_ARCH='x86_64'
 
 ### Environment variables
